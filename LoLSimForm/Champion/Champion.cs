@@ -91,7 +91,7 @@ namespace LoLSimForm
             UpdateTimer = new System.Timers.Timer(0.1 * 1000 / timeLevel);
         }
 
-        protected string defaultAbility = "QWEQQRQEQEREEWWRWW";
+        protected string defaultAbility = "QWEQQR,QEQER,EEWWR,WW";
         protected string currentAbility;
 
 
@@ -108,8 +108,8 @@ namespace LoLSimForm
         protected System.Timers.Timer RCD_Timer;
 
         public double timeLevel = 1;
-        protected DateTime startTime = DateTime.Now;
-        
+        protected DateTime startTime;
+
 
 
         public void autoAttack()
@@ -120,12 +120,12 @@ namespace LoLSimForm
         }
 
         public event EventHandler eAutoAttack;
-        void OnAutoAttack(object sender,ElapsedEventArgs e)
+        void OnAutoAttack(object sender, ElapsedEventArgs e)
         {
             double damage = cAttackNumber * 100 / (100 + Enemy.cArmor);
             if (Enemy.cHealth > 0)
             {
-                eAutoAttack(this, EventArgs.Empty);
+
                 Enemy.cHealth -= damage;
                 if (this.championItems != null && this.championItems.Count > 0)
                 {
@@ -136,8 +136,8 @@ namespace LoLSimForm
                     }
                 }
                 form1.richTextBox1.AppendText(Environment.NewLine);
-                form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from AutoAttack");                
-
+                form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from AutoAttack");
+                eAutoAttack(this, EventArgs.Empty);
             }
             else
             {
@@ -146,13 +146,13 @@ namespace LoLSimForm
         }
 
         protected void Death()
-        {            
+        {
             AutoAttackTimer.Stop();
             //QCD_Timer.Stop();
             UpdateTimer.Stop();
             form1.richTextBox1.AppendText(Environment.NewLine);
             form1.richTextBox1.AppendText("Enemy died!");
-            form1.richTextBox1.AppendText("Attack last for "+(DateTime.Now - startTime).TotalSeconds * this.timeLevel+ " seconds.");
+            form1.richTextBox1.AppendText("Attack last for " + (DateTime.Now - startTime).TotalSeconds * this.timeLevel + " seconds.");
         }
 
 
@@ -199,23 +199,23 @@ namespace LoLSimForm
             cSpellVamp = bSpellVamp;
         }
 
-        public virtual void P_Ablility()
-        {
-            
-        }
-        public virtual void Q_Ablility()
+        public virtual void P_Ability()
         {
 
         }
-        public virtual void W_Ablility()
+        public virtual void Q_Ability()
         {
 
         }
-        public virtual void E_Ablility()
+        public virtual void W_Ability()
         {
 
         }
-        public virtual void R_Ablility()
+        public virtual void E_Ability()
+        {
+
+        }
+        public virtual void R_Ability()
         {
 
         }

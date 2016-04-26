@@ -96,6 +96,9 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.MyChampionQCD = new System.Windows.Forms.Label();
+            this.MyChamoionECD = new System.Windows.Forms.Label();
+            this.MyChampionRCD = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyChampionIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyChampionIcon)).BeginInit();
@@ -820,11 +823,44 @@
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
+            // MyChampionQCD
+            // 
+            this.MyChampionQCD.AutoSize = true;
+            this.MyChampionQCD.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionQCD.Location = new System.Drawing.Point(752, 168);
+            this.MyChampionQCD.Name = "MyChampionQCD";
+            this.MyChampionQCD.Size = new System.Drawing.Size(34, 24);
+            this.MyChampionQCD.TabIndex = 10;
+            this.MyChampionQCD.Text = "18";
+            // 
+            // MyChamoionECD
+            // 
+            this.MyChamoionECD.AutoSize = true;
+            this.MyChamoionECD.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChamoionECD.Location = new System.Drawing.Point(864, 168);
+            this.MyChamoionECD.Name = "MyChamoionECD";
+            this.MyChamoionECD.Size = new System.Drawing.Size(34, 24);
+            this.MyChamoionECD.TabIndex = 11;
+            this.MyChamoionECD.Text = "18";
+            // 
+            // MyChampionRCD
+            // 
+            this.MyChampionRCD.AutoSize = true;
+            this.MyChampionRCD.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionRCD.Location = new System.Drawing.Point(920, 168);
+            this.MyChampionRCD.Name = "MyChampionRCD";
+            this.MyChampionRCD.Size = new System.Drawing.Size(34, 24);
+            this.MyChampionRCD.TabIndex = 12;
+            this.MyChampionRCD.Text = "18";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1197, 611);
+            this.Controls.Add(this.MyChampionRCD);
+            this.Controls.Add(this.MyChamoionECD);
+            this.Controls.Add(this.MyChampionQCD);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -855,6 +891,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -928,6 +965,9 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         public System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.Label MyChampionQCD;
+        public System.Windows.Forms.Label MyChamoionECD;
+        public System.Windows.Forms.Label MyChampionRCD;
     }
 }
 

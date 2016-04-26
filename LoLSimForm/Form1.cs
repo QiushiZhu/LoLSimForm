@@ -36,20 +36,18 @@ namespace LoLSimForm
                 }
             }
 
-            MasterYi myMasterYi = new MasterYi(1);
-            
-            myMasterYi.UpdateStats();            
-            MasterYi enemyMasterYi = new MasterYi(1);
-            
+            MasterYi myMasterYi = new MasterYi(5);            
+            myMasterYi.UpdateStats();      
+                  
+            MasterYi enemyMasterYi = new MasterYi(5);            
             enemyMasterYi.UpdateStats();
+
             myMasterYi.form1 = this;
             myMasterYi.Enemy = enemyMasterYi;
             //myMasterYi.ItemPurchase(new BladeOfTheRuinedKing());
 
             myMasterYi.coolDownArrangeMent();
-            myMasterYi.P_Ablility();
-            myMasterYi.Q_Ablility();
-            myMasterYi.autoAttack();
+            ;
         }
 
         private void label2_Click(object sender, EventArgs e)
