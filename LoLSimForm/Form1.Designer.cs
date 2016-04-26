@@ -99,6 +99,7 @@
             this.MyChampionQCD = new System.Windows.Forms.Label();
             this.MyChamoionECD = new System.Windows.Forms.Label();
             this.MyChampionRCD = new System.Windows.Forms.Label();
+            this.MyChampionAACD = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyChampionIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyChampionIcon)).BeginInit();
@@ -853,11 +854,22 @@
             this.MyChampionRCD.TabIndex = 12;
             this.MyChampionRCD.Text = "18";
             // 
+            // MyChampionAACD
+            // 
+            this.MyChampionAACD.AutoSize = true;
+            this.MyChampionAACD.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionAACD.Location = new System.Drawing.Point(688, 169);
+            this.MyChampionAACD.Name = "MyChampionAACD";
+            this.MyChampionAACD.Size = new System.Drawing.Size(34, 24);
+            this.MyChampionAACD.TabIndex = 13;
+            this.MyChampionAACD.Text = "18";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1197, 611);
+            this.Controls.Add(this.MyChampionAACD);
             this.Controls.Add(this.MyChampionRCD);
             this.Controls.Add(this.MyChamoionECD);
             this.Controls.Add(this.MyChampionQCD);
@@ -968,6 +980,7 @@
         public System.Windows.Forms.Label MyChampionQCD;
         public System.Windows.Forms.Label MyChamoionECD;
         public System.Windows.Forms.Label MyChampionRCD;
+        public System.Windows.Forms.Label MyChampionAACD;
     }
 }
 

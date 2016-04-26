@@ -88,11 +88,14 @@ namespace LoLSimForm
             W_Level = currentAbility.Length - currentAbility.Replace("W", "").Length - 1;
             E_Level = W_Level = currentAbility.Length - currentAbility.Replace("E", "").Length - 1;
             R_Level = W_Level = currentAbility.Length - currentAbility.Replace("R", "").Length - 1;
-            UpdateTimer = new System.Timers.Timer(0.1 * 1000 / timeLevel);
+            UpdateTimer = new System.Timers.Timer(500 / frameRate);
+
         }
 
         protected string defaultAbility = "QWEQQR,QEQER,EEWWR,WW";
         protected string currentAbility;
+        public const double frameRate = 10;
+        protected int frameCount = 0;
 
 
         //logic
@@ -100,27 +103,14 @@ namespace LoLSimForm
         public Form1 form1;
 
         protected System.Timers.Timer UpdateTimer;
-        protected System.Timers.Timer AutoAttackTimer;
-        protected System.Timers.Timer QCD_Timer;
-        protected System.Timers.Timer QAni_Timer;
-        protected System.Timers.Timer WCD_Timer;
-        protected System.Timers.Timer ECD_Timer;
-        protected System.Timers.Timer RCD_Timer;
-
-        public double timeLevel = 1;
-        protected DateTime startTime;
 
 
 
-        public void autoAttack()
-        {
-            AutoAttackTimer = new System.Timers.Timer(1 / this.cAttackSpeed * 1000 / this.timeLevel);
-            AutoAttackTimer.Start();
-            AutoAttackTimer.Elapsed += new ElapsedEventHandler(OnAutoAttack);
-        }
 
+
+        //TODO:Crit Hit (Use Expection or Ramdon?)
         public event EventHandler eAutoAttack;
-        void OnAutoAttack(object sender, ElapsedEventArgs e)
+        protected void AutoAttack()
         {
             double damage = cAttackNumber * 100 / (100 + Enemy.cArmor);
             if (Enemy.cHealth > 0)
@@ -131,28 +121,27 @@ namespace LoLSimForm
                 {
                     for (int i = 0; i < this.championItems.Count; i++)
                     {
-                        form1.richTextBox1.AppendText(Environment.NewLine);
                         form1.richTextBox1.AppendText(championItems[i].iAutoAttackPassive(Enemy));
+                        form1.richTextBox1.AppendText(Environment.NewLine);
                     }
                 }
-                form1.richTextBox1.AppendText(Environment.NewLine);
+
                 form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from AutoAttack");
+                form1.richTextBox1.AppendText(Environment.NewLine);
                 eAutoAttack(this, EventArgs.Empty);
             }
-            else
-            {
-                Death();
-            }
+
         }
 
         protected void Death()
         {
-            AutoAttackTimer.Stop();
+            //AutoAttackTimer.Stop();
             //QCD_Timer.Stop();
             UpdateTimer.Stop();
-            form1.richTextBox1.AppendText(Environment.NewLine);
+
             form1.richTextBox1.AppendText("Enemy died!");
-            form1.richTextBox1.AppendText("Attack last for " + (DateTime.Now - startTime).TotalSeconds * this.timeLevel + " seconds.");
+            form1.richTextBox1.AppendText("Attack last for " + (frameCount / frameRate).ToString("F1") + " seconds.");
+            form1.richTextBox1.AppendText(Environment.NewLine);
         }
 
 

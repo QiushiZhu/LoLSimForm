@@ -31,11 +31,16 @@ namespace LoLSimForm
             this.nManaReg = 0.45;
             this.nMagigResist = 1.25;
 
+            UpdateStats();
+
             defaultAbility = "QWEQQR,QEQER,EEWWR,WW";
 
+            //TODO:Move CD calculation to Champion Class. Deal with "Q_LEVEL = -1" situation;
             q_cd = Q_Ability_CoolDown[Q_Level];
             e_cd = E_Ability_CoolDown[E_Level];
-            //coolDownArrangeMent();
+            aa_cd = 1 / cAttackSpeed;
+            ;
+
         }
 
         int aaCount = -1;
@@ -52,78 +57,92 @@ namespace LoLSimForm
 
         double[] R_Ability_CoolDown = { 85, 85, 85 };
         double[] R_Ability_AS = { 0.3, 0.5, 0.8 };
-        
+
         double q_cd;
         double q_cd_Num;
 
         double e_cd;
         double e_cd_Num;
-        int e_startTime;
-        int e_duration = 50;
+        double e_startTime;
+        double e_duration = 5 * frameRate;
 
-        int r_duration = 70;
-        int r_startTime;
+        double r_duration = 7 * frameRate;
+        double r_startTime;
         double r_cd;
         double r_cd_Num;
 
+        double aa_cd;
+        double aa_cd_Num;
+
         int i;
-        int frameCount = 0;  //update 0.1s (update with update timer) 
+        //update 0.1s (update with update timer) 
 
         double currentAD;
         double currentAS;
 
-        public void coolDownArrangeMent()
+        public void SimStart()
         {
             currentAD = cAttackNumber;
             currentAS = cAttackNumber;
             q_cd_Num = 0;
             e_cd_Num = 0;
             r_cd_Num = 85;
+            aa_cd_Num = aa_cd;
+
             P_Ability();
-            autoAttack();
+
             UpdateTimer.Elapsed += UpdateTimer_Elapsed;
-            startTime = DateTime.Now;
             UpdateTimer.Start();
         }
 
+
+
+        //TODO:Move this block to Champion Class. Override and inherit it;
         private void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (Enemy.cHealth < 0)
                 Death();
-            q_cd_Num -= 0.1;
+
+            aa_cd_Num -= 1 / frameRate;
+            form1.MyChampionAACD.Text = aa_cd_Num.ToString("F1");
+            if (aa_cd_Num <= 0)
+            {
+                AutoAttack();
+                aa_cd_Num = aa_cd;
+            }
+
+            q_cd_Num -= 1 / frameRate;
             form1.MyChampionQCD.Text = q_cd_Num.ToString("F1");
-            if (q_cd_Num <=0 && Q_Level >= 0)
+            if (q_cd_Num <= 0 && Q_Level >= 0)
             {
                 Q_Ability();
                 q_cd_Num = q_cd;
             }
 
-            e_cd_Num -= 0.1;
+            e_cd_Num -= 1 / frameRate;
             form1.MyChamoionECD.Text = e_cd_Num.ToString("F1");
 
-            if (e_cd_Num<=0 && E_Level>=0)
+            if (e_cd_Num <= 0 && E_Level >= 0)
             {
                 E_Ability();
                 e_cd_Num = e_cd;
             }
-            if (frameCount - e_startTime > e_duration) 
+            if (frameCount - e_startTime > e_duration)
             {
                 cAttackNumber = currentAD * 1.1;
             }
 
-            r_cd_Num -= 0.1;
+            r_cd_Num -= 1 / frameRate;
             form1.MyChampionRCD.Text = r_cd_Num.ToString("F1");
             if (r_cd_Num <= 0 && R_Level >= 0)
             {
                 R_Ability();
                 r_cd_Num = r_cd;
             }
-            if(frameCount - r_startTime>r_duration)
+            if (frameCount - r_startTime > r_duration)
             {
                 cAttackSpeed = currentAS;
-                AutoAttackTimer.Interval = 1 / this.cAttackSpeed * 1000 / this.timeLevel;
             }
-
 
             frameCount++;
             Console.WriteLine(frameCount);
@@ -145,60 +164,56 @@ namespace LoLSimForm
             {
                 double damage = P_Ability_Modifier * this.cAttackNumber * 100 / (100 + Enemy.cArmor);
 
-
                 Enemy.cHealth -= damage;
                 if (this.championItems != null && this.championItems.Count > 0)
                 {
                     for (int i = 0; i < this.championItems.Count; i++)
                     {
-                        form1.richTextBox1.AppendText(Environment.NewLine);
+                        
                         form1.richTextBox1.AppendText(championItems[i].iAutoAttackPassive(Enemy));
+                        form1.richTextBox1.AppendText(Environment.NewLine);
                     }
                 }
 
-                form1.richTextBox1.AppendText(Environment.NewLine);
                 form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from Passive");
+                form1.richTextBox1.AppendText(Environment.NewLine);
                 OnE_Ability(this, EventArgs.Empty);
                 aaCount = 0;
             }
             q_cd_Num -= 1;
-
         }
 
         public override void Q_Ability()
         {
-            
             double cost = Q_Ability_Cost[Q_Level];
             OnQ_Ability();
         }
 
         void OnQ_Ability()
         {
-            AutoAttackTimer.Stop();
             double q_damage = (Q_Ability_Damage[Q_Level] + Q_Ability_Bonus * cAttackNumber) * 100 / (100 + Enemy.cArmor);
             Enemy.cHealth -= q_damage;
-            form1.richTextBox1.AppendText(Environment.NewLine);
+
             form1.richTextBox1.AppendText(q_damage.ToString("F0") + " damage from Q_Ability");
-            //System.Threading.Thread.Sleep((int)(0.25 * 1000 / timeLevel));
-            AutoAttackTimer.Start();
+            form1.richTextBox1.AppendText(Environment.NewLine);
         }
 
         public override void E_Ability()
         {
-            e_startTime = frameCount;           
+            e_startTime = frameCount;
             eAutoAttack += OnE_Ability;
-                       
         }
 
-        void OnE_Ability(object sender,EventArgs e)
+        void OnE_Ability(object sender, EventArgs e)
         {
-            if (frameCount - e_startTime < e_duration)  //  50 is e duration
+            if (frameCount - e_startTime < e_duration)
             {
                 cAttackNumber = currentAD;
                 double e_damage = E_Ability_Damage[E_Level] + E_Ability_Bonus * bAttackNumber;
                 Enemy.cHealth -= e_damage;
-                form1.richTextBox1.AppendText(Environment.NewLine);
+
                 form1.richTextBox1.AppendText(e_damage.ToString("F0") + " damage from E_Ability");
+                form1.richTextBox1.AppendText(Environment.NewLine);
             }
         }
 
@@ -209,8 +224,8 @@ namespace LoLSimForm
 
         void OnR_Ability()
         {
+            //TODO:Complete this ability, AS stats update
             cAttackSpeed = (currentAS / oAttackSpeed + R_Ability_AS[R_Level]) * oAttackSpeed;
-            AutoAttackTimer.Interval = 1 / this.cAttackSpeed * 1000 / this.timeLevel;
         }
     }
 }
