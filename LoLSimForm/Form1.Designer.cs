@@ -97,9 +97,12 @@
             this.label20 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.MyChampionQCD = new System.Windows.Forms.Label();
-            this.MyChamoionECD = new System.Windows.Forms.Label();
+            this.MyChampionECD = new System.Windows.Forms.Label();
             this.MyChampionRCD = new System.Windows.Forms.Label();
             this.MyChampionAACD = new System.Windows.Forms.Label();
+            this.MyChampionWCD = new System.Windows.Forms.Label();
+            this.EnemyHealthBar = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyChampionIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyChampionIcon)).BeginInit();
@@ -115,6 +118,7 @@
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyHealthBar)).BeginInit();
             this.SuspendLayout();
             // 
             // EnemyChampionText
@@ -830,19 +834,19 @@
             this.MyChampionQCD.Font = new System.Drawing.Font("宋体", 18F);
             this.MyChampionQCD.Location = new System.Drawing.Point(752, 168);
             this.MyChampionQCD.Name = "MyChampionQCD";
-            this.MyChampionQCD.Size = new System.Drawing.Size(34, 24);
+            this.MyChampionQCD.Size = new System.Drawing.Size(22, 24);
             this.MyChampionQCD.TabIndex = 10;
-            this.MyChampionQCD.Text = "18";
+            this.MyChampionQCD.Text = "X";
             // 
-            // MyChamoionECD
+            // MyChampionECD
             // 
-            this.MyChamoionECD.AutoSize = true;
-            this.MyChamoionECD.Font = new System.Drawing.Font("宋体", 18F);
-            this.MyChamoionECD.Location = new System.Drawing.Point(864, 168);
-            this.MyChamoionECD.Name = "MyChamoionECD";
-            this.MyChamoionECD.Size = new System.Drawing.Size(34, 24);
-            this.MyChamoionECD.TabIndex = 11;
-            this.MyChamoionECD.Text = "18";
+            this.MyChampionECD.AutoSize = true;
+            this.MyChampionECD.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionECD.Location = new System.Drawing.Point(864, 168);
+            this.MyChampionECD.Name = "MyChampionECD";
+            this.MyChampionECD.Size = new System.Drawing.Size(22, 24);
+            this.MyChampionECD.TabIndex = 11;
+            this.MyChampionECD.Text = "X";
             // 
             // MyChampionRCD
             // 
@@ -850,28 +854,59 @@
             this.MyChampionRCD.Font = new System.Drawing.Font("宋体", 18F);
             this.MyChampionRCD.Location = new System.Drawing.Point(920, 168);
             this.MyChampionRCD.Name = "MyChampionRCD";
-            this.MyChampionRCD.Size = new System.Drawing.Size(34, 24);
+            this.MyChampionRCD.Size = new System.Drawing.Size(22, 24);
             this.MyChampionRCD.TabIndex = 12;
-            this.MyChampionRCD.Text = "18";
+            this.MyChampionRCD.Text = "X";
             // 
             // MyChampionAACD
             // 
             this.MyChampionAACD.AutoSize = true;
             this.MyChampionAACD.Font = new System.Drawing.Font("宋体", 18F);
-            this.MyChampionAACD.Location = new System.Drawing.Point(688, 169);
+            this.MyChampionAACD.Location = new System.Drawing.Point(816, 112);
             this.MyChampionAACD.Name = "MyChampionAACD";
             this.MyChampionAACD.Size = new System.Drawing.Size(34, 24);
             this.MyChampionAACD.TabIndex = 13;
             this.MyChampionAACD.Text = "18";
+            // 
+            // MyChampionWCD
+            // 
+            this.MyChampionWCD.AutoSize = true;
+            this.MyChampionWCD.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionWCD.Location = new System.Drawing.Point(808, 168);
+            this.MyChampionWCD.Name = "MyChampionWCD";
+            this.MyChampionWCD.Size = new System.Drawing.Size(22, 24);
+            this.MyChampionWCD.TabIndex = 14;
+            this.MyChampionWCD.Text = "X";
+            // 
+            // EnemyHealthBar
+            // 
+            this.EnemyHealthBar.Location = new System.Drawing.Point(752, 72);
+            this.EnemyHealthBar.Name = "EnemyHealthBar";
+            this.EnemyHealthBar.Size = new System.Drawing.Size(150, 25);
+            this.EnemyHealthBar.TabIndex = 15;
+            this.EnemyHealthBar.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(376, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(152, 72);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "GO!GO!GO!";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1197, 611);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.EnemyHealthBar);
+            this.Controls.Add(this.MyChampionWCD);
             this.Controls.Add(this.MyChampionAACD);
             this.Controls.Add(this.MyChampionRCD);
-            this.Controls.Add(this.MyChamoionECD);
+            this.Controls.Add(this.MyChampionECD);
             this.Controls.Add(this.MyChampionQCD);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBox4);
@@ -902,6 +937,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyHealthBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -978,9 +1014,12 @@
         private System.Windows.Forms.Label label27;
         public System.Windows.Forms.RichTextBox richTextBox1;
         public System.Windows.Forms.Label MyChampionQCD;
-        public System.Windows.Forms.Label MyChamoionECD;
+        public System.Windows.Forms.Label MyChampionECD;
         public System.Windows.Forms.Label MyChampionRCD;
         public System.Windows.Forms.Label MyChampionAACD;
+        public System.Windows.Forms.Label MyChampionWCD;
+        public System.Windows.Forms.PictureBox EnemyHealthBar;
+        private System.Windows.Forms.Button button1;
     }
 }
 

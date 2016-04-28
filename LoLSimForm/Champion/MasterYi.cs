@@ -31,15 +31,23 @@ namespace LoLSimForm
             this.nManaReg = 0.45;
             this.nMagigResist = 1.25;
 
+            QType = AbilityType.Oneshot;
+            WType = AbilityType.Passive;
+            EType = AbilityType.Buff;
+            RType = AbilityType.Buff;
+
+            Q_Ability_CoolDown = new double[] { 18, 17, 16, 15, 14 };
+            E_Ability_CoolDown = new double[] { 18, 17, 16, 15, 14 };
+            R_Ability_CoolDown = new double[] { 85, 85, 85 };
+
             UpdateStats();
 
             defaultAbility = "QWEQQR,QEQER,EEWWR,WW";
 
-            //TODO:Move CD calculation to Champion Class. Deal with "Q_LEVEL = -1" situation;
-            q_cd = Q_Ability_CoolDown[Q_Level];
-            e_cd = E_Ability_CoolDown[E_Level];
-            aa_cd = 1 / cAttackSpeed;
-            ;
+            e_duration = 5 * frameRate;
+            r_duration = 7 * frameRate;
+
+
 
         }
 
@@ -47,40 +55,29 @@ namespace LoLSimForm
         double P_Ability_Modifier = 0.5;
 
         double[] Q_Ability_Cost = { 70, 80, 90, 100, 110 };
-        double[] Q_Ability_CoolDown = { 18, 17, 16, 15, 14 };
+        //double[] Q_Ability_CoolDown = { 18, 17, 16, 15, 14 };
         double[] Q_Ability_Damage = { 25, 60, 95, 130, 165 };
         double Q_Ability_Bonus = 1;
 
-        double[] E_Ability_CoolDown = { 18, 17, 16, 15, 14 };
+        //double[] E_Ability_CoolDown = { 18, 17, 16, 15, 14 };
         double[] E_Ability_Damage = { 12, 19, 26, 33, 40 };
         double E_Ability_Bonus = 0.25;
 
-        double[] R_Ability_CoolDown = { 85, 85, 85 };
+        //double[] R_Ability_CoolDown = { 85, 85, 85 };
         double[] R_Ability_AS = { 0.3, 0.5, 0.8 };
 
-        double q_cd;
-        double q_cd_Num;
 
-        double e_cd;
-        double e_cd_Num;
-        double e_startTime;
-        double e_duration = 5 * frameRate;
 
-        double r_duration = 7 * frameRate;
-        double r_startTime;
-        double r_cd;
-        double r_cd_Num;
 
-        double aa_cd;
-        double aa_cd_Num;
+
 
         int i;
-        //update 0.1s (update with update timer) 
+
 
         double currentAD;
         double currentAS;
 
-        public void SimStart()
+        public override void SimStart()
         {
             currentAD = cAttackNumber;
             currentAS = cAttackNumber;
@@ -95,59 +92,12 @@ namespace LoLSimForm
             UpdateTimer.Start();
         }
 
-
-
-        //TODO:Move this block to Champion Class. Override and inherit it;
-        private void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
+        protected override void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (Enemy.cHealth < 0)
-                Death();
-
-            aa_cd_Num -= 1 / frameRate;
-            form1.MyChampionAACD.Text = aa_cd_Num.ToString("F1");
-            if (aa_cd_Num <= 0)
-            {
-                AutoAttack();
-                aa_cd_Num = aa_cd;
-            }
-
-            q_cd_Num -= 1 / frameRate;
-            form1.MyChampionQCD.Text = q_cd_Num.ToString("F1");
-            if (q_cd_Num <= 0 && Q_Level >= 0)
-            {
-                Q_Ability();
-                q_cd_Num = q_cd;
-            }
-
-            e_cd_Num -= 1 / frameRate;
-            form1.MyChamoionECD.Text = e_cd_Num.ToString("F1");
-
-            if (e_cd_Num <= 0 && E_Level >= 0)
-            {
-                E_Ability();
-                e_cd_Num = e_cd;
-            }
-            if (frameCount - e_startTime > e_duration)
-            {
-                cAttackNumber = currentAD * 1.1;
-            }
-
-            r_cd_Num -= 1 / frameRate;
-            form1.MyChampionRCD.Text = r_cd_Num.ToString("F1");
-            if (r_cd_Num <= 0 && R_Level >= 0)
-            {
-                R_Ability();
-                r_cd_Num = r_cd;
-            }
-            if (frameCount - r_startTime > r_duration)
-            {
-                cAttackSpeed = currentAS;
-            }
-
-            frameCount++;
-            Console.WriteLine(frameCount);
-
+            base.UpdateTimer_Elapsed(sender, e);
         }
+
+
 
         public override void P_Ability()
         {
@@ -165,19 +115,19 @@ namespace LoLSimForm
                 double damage = P_Ability_Modifier * this.cAttackNumber * 100 / (100 + Enemy.cArmor);
 
                 Enemy.cHealth -= damage;
+
+                form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from Passive");
+                form1.richTextBox1.AppendText(Environment.NewLine);
                 if (this.championItems != null && this.championItems.Count > 0)
                 {
                     for (int i = 0; i < this.championItems.Count; i++)
                     {
-                        
                         form1.richTextBox1.AppendText(championItems[i].iAutoAttackPassive(Enemy));
                         form1.richTextBox1.AppendText(Environment.NewLine);
                     }
                 }
-
-                form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from Passive");
-                form1.richTextBox1.AppendText(Environment.NewLine);
-                OnE_Ability(this, EventArgs.Empty);
+                if (E_Level >= 0)
+                    OnE_Ability(this, EventArgs.Empty);
                 aaCount = 0;
             }
             q_cd_Num -= 1;
@@ -196,6 +146,13 @@ namespace LoLSimForm
 
             form1.richTextBox1.AppendText(q_damage.ToString("F0") + " damage from Q_Ability");
             form1.richTextBox1.AppendText(Environment.NewLine);
+        }
+
+
+
+        public override void W_Ability()
+        {
+            base.W_Ability();
         }
 
         public override void E_Ability()
@@ -217,6 +174,12 @@ namespace LoLSimForm
             }
         }
 
+        public override void E_AbilityCancel()
+        {
+            base.E_AbilityCancel();
+            cAttackNumber = currentAD * 1.1;
+        }
+
         public override void R_Ability()
         {
             r_startTime = frameCount;
@@ -226,6 +189,12 @@ namespace LoLSimForm
         {
             //TODO:Complete this ability, AS stats update
             cAttackSpeed = (currentAS / oAttackSpeed + R_Ability_AS[R_Level]) * oAttackSpeed;
+        }
+
+        public override void R_AbilityCancel()
+        {
+            base.R_AbilityCancel();
+            cAttackSpeed = currentAS;
         }
     }
 }
