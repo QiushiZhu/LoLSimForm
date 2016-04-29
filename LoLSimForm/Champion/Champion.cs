@@ -22,6 +22,18 @@ namespace LoLSimForm
         //items
         public List<Item> championItems = new List<Item>(6);
 
+        //logic
+        protected string defaultAbility = "QWEQQR,QEQER,EEWWR,WW";
+        protected string currentAbility;
+        public const double frameRate = 10;
+        protected int frameCount = 0;
+
+        double enemyTotalHealth;
+
+        public Champion Enemy;
+        public Form1 form1;
+        protected System.Timers.Timer UpdateTimer;
+
 
         #region stats
         //current offence stats
@@ -90,22 +102,11 @@ namespace LoLSimForm
             W_Level = currentAbility.Length - currentAbility.Replace("W", "").Length - 1;
             E_Level = W_Level = currentAbility.Length - currentAbility.Replace("E", "").Length - 1;
             R_Level = W_Level = currentAbility.Length - currentAbility.Replace("R", "").Length - 1;
-            UpdateTimer = new System.Timers.Timer(1000 / frameRate);
+            
 
         }
 
-        protected string defaultAbility = "QWEQQR,QEQER,EEWWR,WW";
-        protected string currentAbility;
-        public const double frameRate = 10;
-        protected int frameCount = 0;
-
-        double enemyTotalHealth;
-
-        //logic
-        public Champion Enemy;
-        public Form1 form1;
-
-        protected System.Timers.Timer UpdateTimer;
+        
 
         //HealtnBarInit
         public void HealthBar()
@@ -166,25 +167,25 @@ namespace LoLSimForm
         protected double q_cd_Num;
         protected double q_startTime;
         protected double q_duration;
-        protected double[] Q_Ability_CoolDown = new double[5];
+        protected double[] Q_Ability_CoolDown;
 
         protected double w_cd;
         protected double w_cd_Num;
         protected double w_startTime;
         protected double w_duration;
-        protected double[] W_Ability_CoolDown = new double[5];
+        protected double[] W_Ability_CoolDown ;
 
         protected double e_cd;
         protected double e_cd_Num;
         protected double e_startTime;
         protected double e_duration;
-        protected double[] E_Ability_CoolDown = new double[5];
+        protected double[] E_Ability_CoolDown ;
 
         protected double r_cd;
         protected double r_cd_Num;
         protected double r_startTime;
         protected double r_duration;
-        protected double[] R_Ability_CoolDown = new double[3];
+        protected double[] R_Ability_CoolDown ;
 
         protected double aa_cd;
         protected double aa_cd_Num;
@@ -197,7 +198,12 @@ namespace LoLSimForm
 
         public virtual void SimStart()
         {
-
+            UpdateTimer = new System.Timers.Timer(1000 / frameRate);
+            q_cd_Num = 0.1;
+            w_cd_Num = 0.1;
+            e_cd_Num = 0.1;
+            r_cd_Num = 30;
+            aa_cd_Num = 0;
         }
 
         protected virtual void UpdateTimer_Elapsed(object sender, ElapsedEventArgs e)

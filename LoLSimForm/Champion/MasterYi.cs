@@ -79,12 +79,9 @@ namespace LoLSimForm
 
         public override void SimStart()
         {
+            base.SimStart();
             currentAD = cAttackNumber;
-            currentAS = cAttackNumber;
-            q_cd_Num = 0;
-            e_cd_Num = 0;
-            r_cd_Num = 85;
-            aa_cd_Num = aa_cd;
+            currentAS = cAttackNumber;            
 
             P_Ability();
 
