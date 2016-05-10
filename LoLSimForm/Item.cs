@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoLSimForm
 {
-    class Item
+    public class Item
     {
         public double iAttackNumber { get; set; }
         public double iAttackSpeed { get; set; }

@@ -47,11 +47,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.MyChampionItemsRadioAuto = new System.Windows.Forms.RadioButton();
             this.MyChampionItemsRadioManual = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.MyChampionAbilityPointsRadioAuto = new System.Windows.Forms.RadioButton();
-            this.MyChampionAbilityPointsRadioManual = new System.Windows.Forms.RadioButton();
             this.ItemsLabel = new System.Windows.Forms.Label();
-            this.MyChampionAbilityPointsValue = new System.Windows.Forms.TextBox();
+            this.MyChampionAbilitys = new System.Windows.Forms.TextBox();
             this.MyChampionAbilityPointsLabel = new System.Windows.Forms.Label();
             this.MyChampionLevelNumber = new System.Windows.Forms.ComboBox();
             this.MyChampionLevelLabel = new System.Windows.Forms.Label();
@@ -96,13 +93,44 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.MyChampionQCD = new System.Windows.Forms.Label();
-            this.MyChampionECD = new System.Windows.Forms.Label();
-            this.MyChampionRCD = new System.Windows.Forms.Label();
-            this.MyChampionAACD = new System.Windows.Forms.Label();
-            this.MyChampionWCD = new System.Windows.Forms.Label();
+            this.MyChampionCD1 = new System.Windows.Forms.Label();
+            this.MyChampionCD3 = new System.Windows.Forms.Label();
+            this.MyChampionCD4 = new System.Windows.Forms.Label();
+            this.MyChampionCD0 = new System.Windows.Forms.Label();
+            this.MyChampionCD2 = new System.Windows.Forms.Label();
             this.EnemyHealthBar = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.EnemyChampionCD2 = new System.Windows.Forms.Label();
+            this.EnemyChampionCD4 = new System.Windows.Forms.Label();
+            this.EnemyChampionCD3 = new System.Windows.Forms.Label();
+            this.EnemyChampionCD1 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label41 = new System.Windows.Forms.Label();
+            this.EnemyChampionAbilitys = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.EnemyChampionLevelNumber = new System.Windows.Forms.ComboBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.EnemyChampionCD0 = new System.Windows.Forms.Label();
+            this.MyChampionHealthBar = new System.Windows.Forms.PictureBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.MyChampionBuffLabel1 = new System.Windows.Forms.Label();
+            this.MyChampionBuffLabel2 = new System.Windows.Forms.Label();
+            this.MyChampionBuffLabel3 = new System.Windows.Forms.Label();
+            this.EnemyChampionBuffLabel1 = new System.Windows.Forms.Label();
+            this.EnemyChampionBuffLabel2 = new System.Windows.Forms.Label();
+            this.EnemyChampionBuffLabel3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyChampionIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyChampionIcon)).BeginInit();
@@ -115,10 +143,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.MyChampionItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MyChampionItem4)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyHealthBar)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MyChampionHealthBar)).BeginInit();
             this.SuspendLayout();
             // 
             // EnemyChampionText
@@ -189,9 +226,8 @@
             this.groupBox2.Controls.Add(this.MyChampionGoldLabel);
             this.groupBox2.Controls.Add(this.MyChampionGoldNumber);
             this.groupBox2.Controls.Add(this.panel2);
-            this.groupBox2.Controls.Add(this.panel1);
             this.groupBox2.Controls.Add(this.ItemsLabel);
-            this.groupBox2.Controls.Add(this.MyChampionAbilityPointsValue);
+            this.groupBox2.Controls.Add(this.MyChampionAbilitys);
             this.groupBox2.Controls.Add(this.MyChampionAbilityPointsLabel);
             this.groupBox2.Controls.Add(this.MyChampionLevelNumber);
             this.groupBox2.Controls.Add(this.MyChampionLevelLabel);
@@ -318,38 +354,6 @@
             this.MyChampionItemsRadioManual.UseVisualStyleBackColor = true;
             this.MyChampionItemsRadioManual.CheckedChanged += new System.EventHandler(this.ItemsRadioManual_CheckedChanged);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.MyChampionAbilityPointsRadioAuto);
-            this.panel1.Controls.Add(this.MyChampionAbilityPointsRadioManual);
-            this.panel1.Location = new System.Drawing.Point(124, 54);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(145, 30);
-            this.panel1.TabIndex = 7;
-            // 
-            // MyChampionAbilityPointsRadioAuto
-            // 
-            this.MyChampionAbilityPointsRadioAuto.AutoSize = true;
-            this.MyChampionAbilityPointsRadioAuto.Location = new System.Drawing.Point(7, 7);
-            this.MyChampionAbilityPointsRadioAuto.Name = "MyChampionAbilityPointsRadioAuto";
-            this.MyChampionAbilityPointsRadioAuto.Size = new System.Drawing.Size(47, 16);
-            this.MyChampionAbilityPointsRadioAuto.TabIndex = 2;
-            this.MyChampionAbilityPointsRadioAuto.TabStop = true;
-            this.MyChampionAbilityPointsRadioAuto.Text = "Auto";
-            this.MyChampionAbilityPointsRadioAuto.UseVisualStyleBackColor = true;
-            // 
-            // MyChampionAbilityPointsRadioManual
-            // 
-            this.MyChampionAbilityPointsRadioManual.AutoSize = true;
-            this.MyChampionAbilityPointsRadioManual.Location = new System.Drawing.Point(80, 7);
-            this.MyChampionAbilityPointsRadioManual.Name = "MyChampionAbilityPointsRadioManual";
-            this.MyChampionAbilityPointsRadioManual.Size = new System.Drawing.Size(59, 16);
-            this.MyChampionAbilityPointsRadioManual.TabIndex = 7;
-            this.MyChampionAbilityPointsRadioManual.TabStop = true;
-            this.MyChampionAbilityPointsRadioManual.Text = "Manual";
-            this.MyChampionAbilityPointsRadioManual.UseVisualStyleBackColor = true;
-            this.MyChampionAbilityPointsRadioManual.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
             // ItemsLabel
             // 
             this.ItemsLabel.AutoSize = true;
@@ -360,21 +364,21 @@
             this.ItemsLabel.Text = "Items:";
             this.ItemsLabel.Click += new System.EventHandler(this.label2_Click_1);
             // 
-            // MyChampionAbilityPointsValue
+            // MyChampionAbilitys
             // 
-            this.MyChampionAbilityPointsValue.Location = new System.Drawing.Point(27, 90);
-            this.MyChampionAbilityPointsValue.Name = "MyChampionAbilityPointsValue";
-            this.MyChampionAbilityPointsValue.Size = new System.Drawing.Size(242, 21);
-            this.MyChampionAbilityPointsValue.TabIndex = 8;
+            this.MyChampionAbilitys.Location = new System.Drawing.Point(128, 64);
+            this.MyChampionAbilitys.Name = "MyChampionAbilitys";
+            this.MyChampionAbilitys.Size = new System.Drawing.Size(141, 21);
+            this.MyChampionAbilitys.TabIndex = 8;
             // 
             // MyChampionAbilityPointsLabel
             // 
             this.MyChampionAbilityPointsLabel.AutoSize = true;
             this.MyChampionAbilityPointsLabel.Location = new System.Drawing.Point(25, 66);
             this.MyChampionAbilityPointsLabel.Name = "MyChampionAbilityPointsLabel";
-            this.MyChampionAbilityPointsLabel.Size = new System.Drawing.Size(89, 12);
+            this.MyChampionAbilityPointsLabel.Size = new System.Drawing.Size(59, 12);
             this.MyChampionAbilityPointsLabel.TabIndex = 7;
-            this.MyChampionAbilityPointsLabel.Text = "AbilityPoints:";
+            this.MyChampionAbilityPointsLabel.Text = "Abilitys:";
             // 
             // MyChampionLevelNumber
             // 
@@ -398,10 +402,11 @@
             "16",
             "17",
             "18"});
-            this.MyChampionLevelNumber.Location = new System.Drawing.Point(124, 28);
+            this.MyChampionLevelNumber.Location = new System.Drawing.Point(128, 28);
             this.MyChampionLevelNumber.Name = "MyChampionLevelNumber";
-            this.MyChampionLevelNumber.Size = new System.Drawing.Size(146, 20);
+            this.MyChampionLevelNumber.Size = new System.Drawing.Size(142, 20);
             this.MyChampionLevelNumber.TabIndex = 1;
+            this.MyChampionLevelNumber.SelectedIndexChanged += new System.EventHandler(this.MyChampionLevelNumber_SelectedIndexChanged);
             // 
             // MyChampionLevelLabel
             // 
@@ -433,7 +438,7 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(352, 216);
+            this.groupBox3.Location = new System.Drawing.Point(32, 576);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox3.Size = new System.Drawing.Size(160, 336);
@@ -628,7 +633,7 @@
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.label27);
             this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Location = new System.Drawing.Point(536, 217);
+            this.groupBox4.Location = new System.Drawing.Point(208, 584);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(168, 336);
             this.groupBox4.TabIndex = 8;
@@ -822,65 +827,65 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(744, 224);
+            this.richTextBox1.Location = new System.Drawing.Point(648, 224);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(368, 328);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
-            // MyChampionQCD
+            // MyChampionCD1
             // 
-            this.MyChampionQCD.AutoSize = true;
-            this.MyChampionQCD.Font = new System.Drawing.Font("宋体", 18F);
-            this.MyChampionQCD.Location = new System.Drawing.Point(752, 168);
-            this.MyChampionQCD.Name = "MyChampionQCD";
-            this.MyChampionQCD.Size = new System.Drawing.Size(22, 24);
-            this.MyChampionQCD.TabIndex = 10;
-            this.MyChampionQCD.Text = "X";
+            this.MyChampionCD1.AutoSize = true;
+            this.MyChampionCD1.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionCD1.Location = new System.Drawing.Point(744, 144);
+            this.MyChampionCD1.Name = "MyChampionCD1";
+            this.MyChampionCD1.Size = new System.Drawing.Size(22, 24);
+            this.MyChampionCD1.TabIndex = 10;
+            this.MyChampionCD1.Text = "X";
             // 
-            // MyChampionECD
+            // MyChampionCD3
             // 
-            this.MyChampionECD.AutoSize = true;
-            this.MyChampionECD.Font = new System.Drawing.Font("宋体", 18F);
-            this.MyChampionECD.Location = new System.Drawing.Point(864, 168);
-            this.MyChampionECD.Name = "MyChampionECD";
-            this.MyChampionECD.Size = new System.Drawing.Size(22, 24);
-            this.MyChampionECD.TabIndex = 11;
-            this.MyChampionECD.Text = "X";
+            this.MyChampionCD3.AutoSize = true;
+            this.MyChampionCD3.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionCD3.Location = new System.Drawing.Point(856, 144);
+            this.MyChampionCD3.Name = "MyChampionCD3";
+            this.MyChampionCD3.Size = new System.Drawing.Size(22, 24);
+            this.MyChampionCD3.TabIndex = 11;
+            this.MyChampionCD3.Text = "X";
             // 
-            // MyChampionRCD
+            // MyChampionCD4
             // 
-            this.MyChampionRCD.AutoSize = true;
-            this.MyChampionRCD.Font = new System.Drawing.Font("宋体", 18F);
-            this.MyChampionRCD.Location = new System.Drawing.Point(920, 168);
-            this.MyChampionRCD.Name = "MyChampionRCD";
-            this.MyChampionRCD.Size = new System.Drawing.Size(22, 24);
-            this.MyChampionRCD.TabIndex = 12;
-            this.MyChampionRCD.Text = "X";
+            this.MyChampionCD4.AutoSize = true;
+            this.MyChampionCD4.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionCD4.Location = new System.Drawing.Point(912, 144);
+            this.MyChampionCD4.Name = "MyChampionCD4";
+            this.MyChampionCD4.Size = new System.Drawing.Size(22, 24);
+            this.MyChampionCD4.TabIndex = 12;
+            this.MyChampionCD4.Text = "X";
             // 
-            // MyChampionAACD
+            // MyChampionCD0
             // 
-            this.MyChampionAACD.AutoSize = true;
-            this.MyChampionAACD.Font = new System.Drawing.Font("宋体", 18F);
-            this.MyChampionAACD.Location = new System.Drawing.Point(816, 112);
-            this.MyChampionAACD.Name = "MyChampionAACD";
-            this.MyChampionAACD.Size = new System.Drawing.Size(34, 24);
-            this.MyChampionAACD.TabIndex = 13;
-            this.MyChampionAACD.Text = "18";
+            this.MyChampionCD0.AutoSize = true;
+            this.MyChampionCD0.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionCD0.Location = new System.Drawing.Point(680, 144);
+            this.MyChampionCD0.Name = "MyChampionCD0";
+            this.MyChampionCD0.Size = new System.Drawing.Size(34, 24);
+            this.MyChampionCD0.TabIndex = 13;
+            this.MyChampionCD0.Text = "18";
             // 
-            // MyChampionWCD
+            // MyChampionCD2
             // 
-            this.MyChampionWCD.AutoSize = true;
-            this.MyChampionWCD.Font = new System.Drawing.Font("宋体", 18F);
-            this.MyChampionWCD.Location = new System.Drawing.Point(808, 168);
-            this.MyChampionWCD.Name = "MyChampionWCD";
-            this.MyChampionWCD.Size = new System.Drawing.Size(22, 24);
-            this.MyChampionWCD.TabIndex = 14;
-            this.MyChampionWCD.Text = "X";
+            this.MyChampionCD2.AutoSize = true;
+            this.MyChampionCD2.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionCD2.Location = new System.Drawing.Point(800, 144);
+            this.MyChampionCD2.Name = "MyChampionCD2";
+            this.MyChampionCD2.Size = new System.Drawing.Size(22, 24);
+            this.MyChampionCD2.TabIndex = 14;
+            this.MyChampionCD2.Text = "X";
             // 
             // EnemyHealthBar
             // 
-            this.EnemyHealthBar.Location = new System.Drawing.Point(752, 72);
+            this.EnemyHealthBar.Location = new System.Drawing.Point(1088, 88);
             this.EnemyHealthBar.Name = "EnemyHealthBar";
             this.EnemyHealthBar.Size = new System.Drawing.Size(150, 25);
             this.EnemyHealthBar.TabIndex = 15;
@@ -896,18 +901,347 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // EnemyChampionCD2
+            // 
+            this.EnemyChampionCD2.AutoSize = true;
+            this.EnemyChampionCD2.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionCD2.Location = new System.Drawing.Point(1224, 137);
+            this.EnemyChampionCD2.Name = "EnemyChampionCD2";
+            this.EnemyChampionCD2.Size = new System.Drawing.Size(22, 24);
+            this.EnemyChampionCD2.TabIndex = 20;
+            this.EnemyChampionCD2.Text = "X";
+            // 
+            // EnemyChampionCD4
+            // 
+            this.EnemyChampionCD4.AutoSize = true;
+            this.EnemyChampionCD4.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionCD4.Location = new System.Drawing.Point(1336, 137);
+            this.EnemyChampionCD4.Name = "EnemyChampionCD4";
+            this.EnemyChampionCD4.Size = new System.Drawing.Size(22, 24);
+            this.EnemyChampionCD4.TabIndex = 19;
+            this.EnemyChampionCD4.Text = "X";
+            // 
+            // EnemyChampionCD3
+            // 
+            this.EnemyChampionCD3.AutoSize = true;
+            this.EnemyChampionCD3.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionCD3.Location = new System.Drawing.Point(1280, 137);
+            this.EnemyChampionCD3.Name = "EnemyChampionCD3";
+            this.EnemyChampionCD3.Size = new System.Drawing.Size(22, 24);
+            this.EnemyChampionCD3.TabIndex = 18;
+            this.EnemyChampionCD3.Text = "X";
+            this.EnemyChampionCD3.Click += new System.EventHandler(this.EnemyChampionCD3_Click);
+            // 
+            // EnemyChampionCD1
+            // 
+            this.EnemyChampionCD1.AutoSize = true;
+            this.EnemyChampionCD1.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionCD1.Location = new System.Drawing.Point(1168, 137);
+            this.EnemyChampionCD1.Name = "EnemyChampionCD1";
+            this.EnemyChampionCD1.Size = new System.Drawing.Size(22, 24);
+            this.EnemyChampionCD1.TabIndex = 17;
+            this.EnemyChampionCD1.Text = "X";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.panel4);
+            this.groupBox5.Controls.Add(this.label40);
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.panel5);
+            this.groupBox5.Controls.Add(this.label41);
+            this.groupBox5.Controls.Add(this.EnemyChampionAbilitys);
+            this.groupBox5.Controls.Add(this.label42);
+            this.groupBox5.Controls.Add(this.EnemyChampionLevelNumber);
+            this.groupBox5.Controls.Add(this.label43);
+            this.groupBox5.Location = new System.Drawing.Point(336, 216);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(293, 335);
+            this.groupBox5.TabIndex = 21;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Enemy Champion Info";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.pictureBox1);
+            this.panel4.Controls.Add(this.pictureBox2);
+            this.panel4.Controls.Add(this.pictureBox3);
+            this.panel4.Controls.Add(this.pictureBox4);
+            this.panel4.Controls.Add(this.pictureBox5);
+            this.panel4.Controls.Add(this.pictureBox6);
+            this.panel4.Location = new System.Drawing.Point(28, 180);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(242, 143);
+            this.panel4.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Location = new System.Drawing.Point(168, 74);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox3.Location = new System.Drawing.Point(86, 4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox4.Location = new System.Drawing.Point(86, 74);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox4.TabIndex = 11;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox5.Location = new System.Drawing.Point(168, 4);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox5.TabIndex = 9;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox6.Location = new System.Drawing.Point(3, 74);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox6.TabIndex = 10;
+            this.pictureBox6.TabStop = false;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(25, 157);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(35, 12);
+            this.label40.TabIndex = 11;
+            this.label40.Text = "Gold:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(124, 153);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(146, 21);
+            this.textBox1.TabIndex = 9;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.radioButton1);
+            this.panel5.Controls.Add(this.radioButton2);
+            this.panel5.Location = new System.Drawing.Point(125, 117);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(145, 30);
+            this.panel5.TabIndex = 8;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(10, 7);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(47, 16);
+            this.radioButton1.TabIndex = 8;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Auto";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(79, 7);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(59, 16);
+            this.radioButton2.TabIndex = 9;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Manual";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(25, 129);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(41, 12);
+            this.label41.TabIndex = 10;
+            this.label41.Text = "Items:";
+            // 
+            // EnemyChampionAbilitys
+            // 
+            this.EnemyChampionAbilitys.Location = new System.Drawing.Point(128, 64);
+            this.EnemyChampionAbilitys.Name = "EnemyChampionAbilitys";
+            this.EnemyChampionAbilitys.Size = new System.Drawing.Size(141, 21);
+            this.EnemyChampionAbilitys.TabIndex = 8;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(25, 66);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(59, 12);
+            this.label42.TabIndex = 7;
+            this.label42.Text = "Abilitys:";
+            // 
+            // EnemyChampionLevelNumber
+            // 
+            this.EnemyChampionLevelNumber.FormattingEnabled = true;
+            this.EnemyChampionLevelNumber.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"});
+            this.EnemyChampionLevelNumber.Location = new System.Drawing.Point(128, 28);
+            this.EnemyChampionLevelNumber.Name = "EnemyChampionLevelNumber";
+            this.EnemyChampionLevelNumber.Size = new System.Drawing.Size(142, 20);
+            this.EnemyChampionLevelNumber.TabIndex = 1;
+            this.EnemyChampionLevelNumber.SelectedIndexChanged += new System.EventHandler(this.EnemyChampionLevelNumber_SelectedIndexChanged);
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(25, 28);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(41, 12);
+            this.label43.TabIndex = 0;
+            this.label43.Text = "Level:";
+            // 
+            // EnemyChampionCD0
+            // 
+            this.EnemyChampionCD0.AutoSize = true;
+            this.EnemyChampionCD0.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionCD0.Location = new System.Drawing.Point(1104, 136);
+            this.EnemyChampionCD0.Name = "EnemyChampionCD0";
+            this.EnemyChampionCD0.Size = new System.Drawing.Size(34, 24);
+            this.EnemyChampionCD0.TabIndex = 22;
+            this.EnemyChampionCD0.Text = "18";
+            // 
+            // MyChampionHealthBar
+            // 
+            this.MyChampionHealthBar.Location = new System.Drawing.Point(632, 88);
+            this.MyChampionHealthBar.Name = "MyChampionHealthBar";
+            this.MyChampionHealthBar.Size = new System.Drawing.Size(150, 25);
+            this.MyChampionHealthBar.TabIndex = 23;
+            this.MyChampionHealthBar.TabStop = false;
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(1048, 224);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(368, 328);
+            this.richTextBox2.TabIndex = 24;
+            this.richTextBox2.Text = "";
+            // 
+            // MyChampionBuffLabel1
+            // 
+            this.MyChampionBuffLabel1.AutoSize = true;
+            this.MyChampionBuffLabel1.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionBuffLabel1.Location = new System.Drawing.Point(688, 184);
+            this.MyChampionBuffLabel1.Name = "MyChampionBuffLabel1";
+            this.MyChampionBuffLabel1.Size = new System.Drawing.Size(0, 24);
+            this.MyChampionBuffLabel1.TabIndex = 25;
+            // 
+            // MyChampionBuffLabel2
+            // 
+            this.MyChampionBuffLabel2.AutoSize = true;
+            this.MyChampionBuffLabel2.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionBuffLabel2.Location = new System.Drawing.Point(736, 184);
+            this.MyChampionBuffLabel2.Name = "MyChampionBuffLabel2";
+            this.MyChampionBuffLabel2.Size = new System.Drawing.Size(0, 24);
+            this.MyChampionBuffLabel2.TabIndex = 26;
+            // 
+            // MyChampionBuffLabel3
+            // 
+            this.MyChampionBuffLabel3.AutoSize = true;
+            this.MyChampionBuffLabel3.Font = new System.Drawing.Font("宋体", 18F);
+            this.MyChampionBuffLabel3.Location = new System.Drawing.Point(792, 184);
+            this.MyChampionBuffLabel3.Name = "MyChampionBuffLabel3";
+            this.MyChampionBuffLabel3.Size = new System.Drawing.Size(0, 24);
+            this.MyChampionBuffLabel3.TabIndex = 27;
+            // 
+            // EnemyChampionBuffLabel1
+            // 
+            this.EnemyChampionBuffLabel1.AutoSize = true;
+            this.EnemyChampionBuffLabel1.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionBuffLabel1.Location = new System.Drawing.Point(1128, 184);
+            this.EnemyChampionBuffLabel1.Name = "EnemyChampionBuffLabel1";
+            this.EnemyChampionBuffLabel1.Size = new System.Drawing.Size(0, 24);
+            this.EnemyChampionBuffLabel1.TabIndex = 28;
+            // 
+            // EnemyChampionBuffLabel2
+            // 
+            this.EnemyChampionBuffLabel2.AutoSize = true;
+            this.EnemyChampionBuffLabel2.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionBuffLabel2.Location = new System.Drawing.Point(1176, 184);
+            this.EnemyChampionBuffLabel2.Name = "EnemyChampionBuffLabel2";
+            this.EnemyChampionBuffLabel2.Size = new System.Drawing.Size(0, 24);
+            this.EnemyChampionBuffLabel2.TabIndex = 29;
+            // 
+            // EnemyChampionBuffLabel3
+            // 
+            this.EnemyChampionBuffLabel3.AutoSize = true;
+            this.EnemyChampionBuffLabel3.Font = new System.Drawing.Font("宋体", 18F);
+            this.EnemyChampionBuffLabel3.Location = new System.Drawing.Point(1224, 184);
+            this.EnemyChampionBuffLabel3.Name = "EnemyChampionBuffLabel3";
+            this.EnemyChampionBuffLabel3.Size = new System.Drawing.Size(0, 24);
+            this.EnemyChampionBuffLabel3.TabIndex = 30;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 611);
+            this.ClientSize = new System.Drawing.Size(1762, 987);
+            this.Controls.Add(this.EnemyChampionBuffLabel3);
+            this.Controls.Add(this.EnemyChampionBuffLabel2);
+            this.Controls.Add(this.EnemyChampionBuffLabel1);
+            this.Controls.Add(this.MyChampionBuffLabel3);
+            this.Controls.Add(this.MyChampionBuffLabel2);
+            this.Controls.Add(this.MyChampionBuffLabel1);
+            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.MyChampionHealthBar);
+            this.Controls.Add(this.EnemyChampionCD0);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.EnemyChampionCD2);
+            this.Controls.Add(this.EnemyChampionCD4);
+            this.Controls.Add(this.EnemyChampionCD3);
+            this.Controls.Add(this.EnemyChampionCD1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.EnemyHealthBar);
-            this.Controls.Add(this.MyChampionWCD);
-            this.Controls.Add(this.MyChampionAACD);
-            this.Controls.Add(this.MyChampionRCD);
-            this.Controls.Add(this.MyChampionECD);
-            this.Controls.Add(this.MyChampionQCD);
+            this.Controls.Add(this.MyChampionCD2);
+            this.Controls.Add(this.MyChampionCD0);
+            this.Controls.Add(this.MyChampionCD4);
+            this.Controls.Add(this.MyChampionCD3);
+            this.Controls.Add(this.MyChampionCD1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -931,13 +1265,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.MyChampionItem4)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EnemyHealthBar)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MyChampionHealthBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -954,14 +1298,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label MyChampionLevelLabel;
         private System.Windows.Forms.ComboBox MyChampionLevelNumber;
-        private System.Windows.Forms.RadioButton MyChampionAbilityPointsRadioAuto;
-        private System.Windows.Forms.RadioButton MyChampionAbilityPointsRadioManual;
         private System.Windows.Forms.Label MyChampionAbilityPointsLabel;
-        private System.Windows.Forms.TextBox MyChampionAbilityPointsValue;
+        public System.Windows.Forms.TextBox MyChampionAbilitys;
         private System.Windows.Forms.Label ItemsLabel;
         private System.Windows.Forms.RadioButton MyChampionItemsRadioManual;
         private System.Windows.Forms.RadioButton MyChampionItemsRadioAuto;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label MyChampionGoldLabel;
         private System.Windows.Forms.TextBox MyChampionGoldNumber;
@@ -1013,13 +1354,44 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         public System.Windows.Forms.RichTextBox richTextBox1;
-        public System.Windows.Forms.Label MyChampionQCD;
-        public System.Windows.Forms.Label MyChampionECD;
-        public System.Windows.Forms.Label MyChampionRCD;
-        public System.Windows.Forms.Label MyChampionAACD;
-        public System.Windows.Forms.Label MyChampionWCD;
+        public System.Windows.Forms.Label MyChampionCD1;
+        public System.Windows.Forms.Label MyChampionCD3;
+        public System.Windows.Forms.Label MyChampionCD4;
+        public System.Windows.Forms.Label MyChampionCD0;
+        public System.Windows.Forms.Label MyChampionCD2;
         public System.Windows.Forms.PictureBox EnemyHealthBar;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Label EnemyChampionCD2;
+        public System.Windows.Forms.Label EnemyChampionCD4;
+        public System.Windows.Forms.Label EnemyChampionCD3;
+        public System.Windows.Forms.Label EnemyChampionCD1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Label label41;
+        public System.Windows.Forms.TextBox EnemyChampionAbilitys;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.ComboBox EnemyChampionLevelNumber;
+        private System.Windows.Forms.Label label43;
+        public System.Windows.Forms.Label EnemyChampionCD0;
+        public System.Windows.Forms.PictureBox MyChampionHealthBar;
+        public System.Windows.Forms.RichTextBox richTextBox2;
+        public System.Windows.Forms.Label MyChampionBuffLabel1;
+        public System.Windows.Forms.Label MyChampionBuffLabel2;
+        public System.Windows.Forms.Label MyChampionBuffLabel3;
+        public System.Windows.Forms.Label EnemyChampionBuffLabel1;
+        public System.Windows.Forms.Label EnemyChampionBuffLabel2;
+        public System.Windows.Forms.Label EnemyChampionBuffLabel3;
     }
 }
 

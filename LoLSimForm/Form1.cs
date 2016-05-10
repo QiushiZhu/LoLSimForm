@@ -16,9 +16,12 @@ namespace LoLSimForm
         Form2 ChampionSelect = new Form2();
         string currentSelectedChampion;
         string currentSelectedEnemy;
-        bool myChampionSelect;
-        Champion myChampion;
-        Champion enemyChampion;
+        public bool myChampionSelect;
+        public Champion myChampion;
+        public Champion enemyChampion;
+
+        int myDefaultLevel = 1;
+        int enemyDefaultLevel = 1;
 
 
         public Form1()
@@ -31,7 +34,7 @@ namespace LoLSimForm
         }
 
 
-      
+
 
         void formComponentsComplement()
         {
@@ -48,55 +51,61 @@ namespace LoLSimForm
         }
 
         void Sim()
-        {
-
-            //TODO:等级确认,并且给他初始的一级
-
-            ChampionKeyInit(true);
-            ChampionKeyInit(false);
-
-            myChampion.form1 = this;
-            myChampion.Enemy = enemyChampion;
-            myChampion.HealthBar();
-
-
-            myChampion.Level = MyChampionLevelNumber.SelectedIndex;
-
-            //enemyChampion.form1 = this;
-            //enemyChampion.Enemy = myChampion;
-            //enemyChampion.HealthBar();
-
-            myChampion.SimStart(); 
+        {                        
+            myChampion.Sim();
             
+            enemyChampion.Sim(); 
+
         }
 
         void ChampionKeyInit(bool my)
         {
             string champion = "Null";
             Champion target;
+            int defaultLevel;
 
             if (my)
+            {
                 champion = currentSelectedChampion;
+                defaultLevel = myDefaultLevel;
+            }
             else
+            {
                 champion = currentSelectedEnemy;
+                defaultLevel = enemyDefaultLevel;
+            }
 
             switch (champion)
             {
                 case "MasterYi":
-                    target = new MasterYi(1);
+                    target = new MasterYi(defaultLevel,this);
                     break;
                 default:
                     throw new Exception("Select your champion please!");
                 case "Ashe":
-                    target = new Ashe(1);
+                    target = new Ashe(defaultLevel,this);
                     break;
             }
 
             if (my)
+            {
                 myChampion = target;
+                //myChampion.championRole = true;
+                myChampion.Change(defaultLevel);
+                MyChampionAbilitys.Text = myChampion.defaultAbility.Substring(0, MyChampionLevelNumber.SelectedIndex + 1);
+                //myChampion.HealthBarInit();
+            }
             else
+            {
                 enemyChampion = target;
-        }
+                //enemyChampion.championRole = false;
+                enemyChampion.Change(defaultLevel);
+                EnemyChampionAbilitys.Text = enemyChampion.defaultAbility.Substring(0, EnemyChampionLevelNumber.SelectedIndex + 1);
+                //enemyChampion.HealthBarInit();
+            }
+        }       //Phase 1
+        
+
 
         #region championSelect  //点击图片选择英雄
         private void MyChampionIcon_Click(object sender, EventArgs e)
@@ -118,12 +127,14 @@ namespace LoLSimForm
                 MyChampionIcon.Image = ((PictureBox)sender).Image;
                 currentSelectedChampion = ((PictureBox)sender).Name.Substring(0, ((PictureBox)sender).Name.Length - 4);
                 MyChampionText.Text = currentSelectedChampion;
+                ChampionKeyInit(true);
             }
             else
             {
                 EnemyChampionIcon.Image = ((PictureBox)sender).Image;
                 currentSelectedEnemy = ((PictureBox)sender).Name.Substring(0, ((PictureBox)sender).Name.Length - 4);
                 EnemyChampionText.Text = currentSelectedEnemy;
+                ChampionKeyInit(false);
             }
             ChampionSelect.Hide();
         }
@@ -173,6 +184,8 @@ namespace LoLSimForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MyChampionLevelNumber.SelectedIndex = 0;
+            EnemyChampionLevelNumber.SelectedIndex = 0;
 
         }
 
@@ -205,6 +218,33 @@ namespace LoLSimForm
         private void button1_Click(object sender, EventArgs e)
         {
             Sim();
+        }
+
+        private void MyChampionLevelNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (myChampion != null)
+            {
+               
+                myDefaultLevel = MyChampionLevelNumber.SelectedIndex+1;
+                myChampion.Change(myDefaultLevel);
+                MyChampionAbilitys.Text = myChampion.defaultAbility.Substring(0, MyChampionLevelNumber.SelectedIndex + 1);
+            }
+        }
+
+        private void EnemyChampionLevelNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (myChampion != null)
+            {
+              
+                enemyDefaultLevel = EnemyChampionLevelNumber.SelectedIndex+1;                
+                enemyChampion.Change(enemyDefaultLevel);
+                EnemyChampionAbilitys.Text = enemyChampion.defaultAbility.Substring(0, EnemyChampionLevelNumber.SelectedIndex + 1);
+            }
+        }
+
+        private void EnemyChampionCD3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

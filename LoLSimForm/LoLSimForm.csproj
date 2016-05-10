@@ -46,9 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ability\AutoAttack.cs" />
+    <Compile Include="Ability\Buff.cs" />
+    <Compile Include="Ability\MasterYiE.cs" />
+    <Compile Include="Ability\MasterYiQ.cs" />
+    <Compile Include="Ability\MasterYiR.cs" />
+    <Compile Include="Ability\MasterYiW.cs" />
+    <Compile Include="Ability\Ability.cs" />
     <Compile Include="Champion\Ashe.cs" />
     <Compile Include="Champion\Champion.cs" />
-    <Compile Include="Champion\Dummy.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

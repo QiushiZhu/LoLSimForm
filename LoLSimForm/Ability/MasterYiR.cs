@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace LoLSimForm
 {
-    class Ashe:Champion
+    class MasterYiR : Ability
     {
-        public Ashe(int level,Form1 form):base (level,form)
+        public override void init()
+        {
+            CD = 60;
+        }
+
+        public MasterYiR(Champion _caster):base(_caster)
         {
 
         }
