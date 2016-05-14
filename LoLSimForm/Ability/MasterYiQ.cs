@@ -28,5 +28,16 @@ namespace LoLSimForm
             target.cHealth -= damage;
             return damage.ToString("F0") + " damage from Q";
         }
+
+        protected override void passiveEffect()
+        {
+            base.passiveEffect();
+            caster.aa.AAEvent += Aa_AAEvent;
+        }
+
+        private void Aa_AAEvent(object sender, EventArgs e)
+        {
+            CDRemained -= 1;
+        }
     }
 }

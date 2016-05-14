@@ -29,35 +29,39 @@ namespace LoLSimForm
         //input stats
         public int Level { get; set; }
         public string Name { get; set; }
-        public int Q_Level { get; set; }
+        public int Q_Level { get; set; }       
         public int W_Level { get; set; }
         public int E_Level { get; set; }
         public int R_Level { get; set; }
-        public string defaultAbility = "QWEQQRQEQEREEWWRWW";
+
+        public string defaultAbility = "QEQWQRQEQEREEWWRWW";
         public string currentAbility;
 
         //internal reference
         public List<Item> championItems = new List<Item>(6);
-        protected List<Ability> Abilities = new List<Ability>(5);
-        protected AutoAttack aa;
+        public List<Ability> Abilities = new List<Ability>(5);
+        //List<bool> AbilityOn;
+        public AutoAttack aa;
         protected List<Ability> AbilityTitles = new List<Ability>(5);
         public List<Buff> Buffs = new List<Buff>();
         List<Label> BuffLabels = new List<Label>();
         public bool championRole;
 
         //Information Control
-        PictureBox HealthBar;
+        public PictureBox HealthBar;
         public RichTextBox FightLog;
 
         //external reference
         public Champion Enemy;
         public Form1 form1;
 
+        //public SimConclusion conclusion;
+
         //用于搭配CD机,BUFF机的计时器
         const double frameInterval = 0.1;
         const double frameRate = 10;
         int frameCount = 0;
-        System.Timers.Timer t = new System.Timers.Timer(1000 * frameInterval);
+        System.Timers.Timer t = new System.Timers.Timer(500 * frameInterval);
 
 
         //初始输入属性暂存,用于取消BUFF,计算血量等
@@ -108,14 +112,14 @@ namespace LoLSimForm
         public double iSpellVamp { get; set; }
 
         //level0 stats
-        protected double oAttackNumber { get; set; }
-        protected double oAttackSpeed { get; set; }
-        protected double oHealth { get; set; }
-        protected double oArmor { get; set; }
-        protected double oHealthReg { get; set; }
-        protected double oMana { get; set; }
-        protected double oManaReg { get; set; }
-        protected double oMagigResist { get; set; }
+        public double oAttackNumber { get; set; }
+        public double oAttackSpeed { get; set; }
+        public double oHealth { get; set; }
+        public double oArmor { get; set; }
+        public double oHealthReg { get; set; }
+        public double oMana { get; set; }
+        public double oManaReg { get; set; }
+        public double oMagigResist { get; set; }
 
         //leveln stats
         protected double nAttackNumber { get; set; }
@@ -128,23 +132,23 @@ namespace LoLSimForm
         protected double nMagigResist { get; set; }
 
         //bonus stats
-        protected double bAttackNumber { get; set; }
-        protected double bAttackSpeed { get; set; }
-        protected double bCritChance { get; set; }
-        protected double bCritDmg { get; set; }
-        protected double bPenetrate { get; set; }
-        protected double bPenetrateP { get; set; }
-        protected double bHealth { get; set; }
-        protected double bArmor { get; set; }
-        protected double bHealthReg { get; set; }
-        protected double bMana { get; set; }
-        protected double bManaReg { get; set; }
-        protected double bMagicResist { get; set; }
-        protected double bLifeSteal { get; set; }
-        protected double bAP { get; set; }
-        protected double bCDR { get; set; }
-        protected double bMagPenetrate { get; set; }
-        protected double bSpellVamp { get; set; }
+        public double bAttackNumber { get; set; }
+        public double bAttackSpeed { get; set; }
+        public double bCritChance { get; set; }
+        public double bCritDmg { get; set; }
+        public double bPenetrate { get; set; }
+        public double bPenetrateP { get; set; }
+        public double bHealth { get; set; }
+        public double bArmor { get; set; }
+        public double bHealthReg { get; set; }
+        public double bMana { get; set; }
+        public double bManaReg { get; set; }
+        public double bMagicResist { get; set; }
+        public double bLifeSteal { get; set; }
+        public double bAP { get; set; }
+        public double bCDR { get; set; }
+        public double bMagPenetrate { get; set; }
+        public double bSpellVamp { get; set; }
         #endregion
 
         //单位初始化
@@ -157,6 +161,7 @@ namespace LoLSimForm
                 championRole = false;
             Level = level;
             controlInit();
+            t.Elapsed += update;
         }
 
         //开始模拟时调用
@@ -207,10 +212,12 @@ namespace LoLSimForm
             W_Level = currentAbility.Length - currentAbility.Replace("W", "").Length;
             E_Level = currentAbility.Length - currentAbility.Replace("E", "").Length;
             R_Level = currentAbility.Length - currentAbility.Replace("R", "").Length;
+
+
+
+
+
             AbilityInit();
-            Console.WriteLine(level);
-            Console.WriteLine(currentAbility);
-            Console.WriteLine(Q_Level.ToString() + W_Level.ToString() + E_Level.ToString() + R_Level.ToString());
 
             //血条初始化
             HealthBarInit();
@@ -223,7 +230,12 @@ namespace LoLSimForm
             frameCount++;
             AbilityCDMachine();
             BuffMachinde();
-            HealthBarUpdate();                   
+            HealthBarUpdate();
+            if (cHealth < 0)
+            {
+                Death();
+                Enemy.Victoty();
+            }
         }
 
         public void stop()                                      //Phase X
@@ -234,11 +246,19 @@ namespace LoLSimForm
 
         public void HealthBarInit()                         //Phase 2
         {
+            Color HealthBarColor;
+
             //通过Champion内置的ChampionRole判断敌我英雄,再进一步判断将输出显示到Form中的哪个部分.
             if (championRole)
+            {
                 HealthBar = form1.MyChampionHealthBar;
+                HealthBarColor = Color.YellowGreen;
+            }
             else
+            {
                 HealthBar = form1.EnemyHealthBar;
+                HealthBarColor = Color.Crimson;
+            }
 
 
 
@@ -250,8 +270,8 @@ namespace LoLSimForm
 
             Bitmap bar = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(bar);
-            g.DrawRectangle(new Pen(Color.Black), 0, 0, width, height);
-            g.FillRectangle(new SolidBrush(Color.Red), 0, 0, width, height);
+            g.DrawRectangle(new Pen(Color.Black,10), 0, 0, width, height);
+            g.FillRectangle(new SolidBrush(HealthBarColor), 3, 3, width-6, height-6);
 
             for (int i = 0; i < blocks; i++)
             {
@@ -265,7 +285,7 @@ namespace LoLSimForm
         public void TimerInit() //开始计时器             Phase 3
         {
             t.Start();
-            t.Elapsed += update;
+           
         }
 
         public virtual void AbilityInit()               //Phase 2
@@ -277,9 +297,16 @@ namespace LoLSimForm
         {
             for (int i = 0; i < Abilities.Count; i++)
             {
-                Abilities[i].CDR(Enemy);
+                Abilities[i].CDR(Enemy);//这段代码调用AutoAttack.CDR()时调用的是基类代码,未重写
+                Abilities[i].CDRemained = 0.1;  //冷却时间初始化,暂时设定为全冷却
             }
             aa.CDR();
+            aa.AAEvent += Aa_AAEvent;   //该Event为空
+        }
+
+        private void Aa_AAEvent(object sender, EventArgs e)
+        {
+            //Buffs[i].BuffEnd();throw new NotImplementedException();
         }
 
 
@@ -289,29 +316,10 @@ namespace LoLSimForm
         /// AutoAttack
         /// </summary>
         //TODO:Crit Hit (Use Expection or Ramdon?)
-        public event EventHandler eAutoAttack;
-        public void AutoAttack()                //Phase 4 暂时不用
-        {
-            double damage = cAttackNumber * 100 / (100 + Enemy.cArmor);
-            if (Enemy.cHealth > 0)
-            {
+        //public event EventHandler eAutoAttack;
+        
 
-                Enemy.cHealth -= damage;
-                form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from AutoAttack");
-                form1.richTextBox1.AppendText(Environment.NewLine);
-                if (this.championItems != null && this.championItems.Count > 0)
-                {
-                    for (int i = 0; i < this.championItems.Count; i++)
-                    {
-                        form1.richTextBox1.AppendText(championItems[i].iAutoAttackPassive(Enemy));
-                        form1.richTextBox1.AppendText(Environment.NewLine);
-                    }
-                }
-
-                //eAutoAttack(this, EventArgs.Empty);
-            }
-
-        }
+        
 
         public void HealthBarUpdate()       //Phase 4     该方法存在问题,由于没有销毁上一帧生成的血条,导致内存消耗不断增加
         {
@@ -324,14 +332,32 @@ namespace LoLSimForm
             HealthBar.Image = b;
         }
 
-        protected void Death()          //Phase 4
+        public void Death()          //Phase 4
         {
             t.Stop();
-            FightLog.AppendText("Enemy died!");
+            FightLog.AppendText("Died!");
+            FightLog.AppendText(Environment.NewLine);
             FightLog.AppendText("Attack last for " + (frameCount / frameRate).ToString("F1") + " seconds.");
             FightLog.AppendText(Environment.NewLine);
         }
 
+        public void Victoty()
+        {
+            t.Stop();
+            FightLog.AppendText("Victory! " + (cHealth/iHealth).ToString("P") + " health remained");
+            FightLog.AppendText(Environment.NewLine);
+            FightLog.AppendText("Attack last for " + (frameCount / frameRate).ToString("F1") + " seconds.");
+            FightLog.AppendText(Environment.NewLine);
+
+            //DeathInfo winner = new DeathInfo(this);
+            //DeathInfo loser = new DeathInfo(this.Enemy);
+            //SimConclusion conclusion = new SimConclusion(winner, loser, frameCount / frameRate, cHealth / iHealth);
+
+            //ConclusionForm form3 = new ConclusionForm();
+            //form3.statLoad(conclusion);
+            //form3.Show();    //一显示就卡死,fuck
+        }
+        
 
         public void LevelUp()
         {
@@ -340,12 +366,12 @@ namespace LoLSimForm
 
         public void ItemPurchase(Item item)
         {
-            bAttackNumber += item.iAttackNumber;
-            bAttackSpeed += item.iAttackSpeed;
-            bArmor += item.iArmor;
-            bHealth += item.iHealth;
-            bCritChance += item.iCritChance;
-            bPenetrate += item.iPenetrate;
+            bAttackNumber += item.bAttackNumber;
+            bAttackSpeed += item.bAttackSpeed;
+            bArmor += item.bArmor;
+            bHealth += item.bHealth;
+            bCritChance += item.bCritChance;
+            bPenetrate += item.bPenetrate;
             championItems.Add(item);
             statsInit();
         }               //Phase 2
@@ -403,18 +429,23 @@ namespace LoLSimForm
         {
             for (int i = 0; i < Abilities.Count; i++)
             {
-                Abilities[i].CDRemained -= frameInterval;
-                if (Abilities[i].CDRemained <= 0)
+                if (Abilities[i].TurnOn)
                 {
-                    Abilities[i].effect();
-                    Abilities[i].CDRemained = Abilities[i].CD;
+                    Abilities[i].CDRemained -= frameInterval;
+                    if (Abilities[i].CDRemained <= 0)
+                    {
+                        Abilities[i].effect();
+                        Abilities[i].CDRemained = Abilities[i].CD;
+
+                    }
+
+                    //通过Champion内置的ChampionRole判断敌我英雄,再进一步判断将输出显示到Form中的哪个部分.
+                    if (championRole)
+                        form1.Controls["MyChampionCD" + i.ToString()].Text = Abilities[i].CDRemained.ToString("F1");
+                    else
+                        form1.Controls["EnemyChampionCD" + i.ToString()].Text = Abilities[i].CDRemained.ToString("F1");
                 }
 
-                //通过Champion内置的ChampionRole判断敌我英雄,再进一步判断将输出显示到Form中的哪个部分.
-                if (championRole)
-                    form1.Controls["MyChampionCD" + i.ToString()].Text = Abilities[i].CDRemained.ToString("F1");
-                else
-                    form1.Controls["EnemyChampionCD" + i.ToString()].Text = Abilities[i].CDRemained.ToString("F1");
             }
         }
 
@@ -426,8 +457,9 @@ namespace LoLSimForm
                 BuffLabels[i].Text = Buffs[i].countDown.ToString("F1");
                 if(Buffs[i].countDown <=0)
                 {
+                    Buffs[i].BuffEnd();
                     Buffs.RemoveAt(i);
-                    BuffLabels[i].Text = "";
+                    BuffLabels[i].Text = "";                    
                 }
 
             }

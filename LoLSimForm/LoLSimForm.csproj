@@ -51,10 +51,18 @@
     <Compile Include="Ability\MasterYiE.cs" />
     <Compile Include="Ability\MasterYiQ.cs" />
     <Compile Include="Ability\MasterYiR.cs" />
+    <Compile Include="Ability\MasterYiP.cs" />
     <Compile Include="Ability\MasterYiW.cs" />
     <Compile Include="Ability\Ability.cs" />
     <Compile Include="Champion\Ashe.cs" />
     <Compile Include="Champion\Champion.cs" />
+    <Compile Include="ConclusionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConclusionForm.Designer.cs">
+      <DependentUpon>ConclusionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeathInfo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +79,9 @@
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConclusionForm.resx">
+      <DependentUpon>ConclusionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +185,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\VayneSquare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Item\" />
+    <Folder Include="Resources\AbilityIcon\" />
+    <Folder Include="Resources\ItemIcon\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

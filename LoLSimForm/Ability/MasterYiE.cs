@@ -26,6 +26,12 @@ namespace LoLSimForm
         {
 
         }
+
+        protected override void passiveEffect()
+        {
+            //base.passiveEffect();
+            caster.cAttackNumber = caster.iAttackNumber * 1.1;
+        }
     }
 
     class MasterYiEBuff : Buff
@@ -45,9 +51,15 @@ namespace LoLSimForm
         {
             //把oAtt,bAttackNumber拿出来,E有bonus
             caster.cAttackNumber = caster.iAttackNumber;
-            double damage = damages[caster.E_Level-1];
+            double damage = damages[caster.E_Level-1]+0.25*caster.bAttackNumber;
             target.cHealth -= damage;
             return damage.ToString("F0")+ " damage from EBuff";
+        }
+
+        public override void BuffEnd()
+        {
+            base.BuffEnd();
+            caster.cAttackNumber = caster.iAttackNumber * 1.1;
         }
     }
 }

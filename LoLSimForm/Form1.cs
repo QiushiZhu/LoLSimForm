@@ -34,7 +34,7 @@ namespace LoLSimForm
         }
 
 
-
+        //最大的问题是UI和逻辑的关系不是分离的,其交互行为也不是参数传递而是更改属性,使得空指针问题,数据保存问题经常出现
 
         void formComponentsComplement()
         {
@@ -51,7 +51,8 @@ namespace LoLSimForm
         }
 
         void Sim()
-        {                        
+        {
+            myChampion.ItemPurchase(new BladeOfTheRuinedKing());            
             myChampion.Sim();
             
             enemyChampion.Sim(); 
@@ -187,6 +188,9 @@ namespace LoLSimForm
             MyChampionLevelNumber.SelectedIndex = 0;
             EnemyChampionLevelNumber.SelectedIndex = 0;
 
+            //ConclusionForm form3 = new ConclusionForm();
+            //form3.Show();                 这么写倒是可以出来
+
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
@@ -245,6 +249,46 @@ namespace LoLSimForm
         private void EnemyChampionCD3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            //这种逻辑的问题是在没有升级W,只升级了E的情况下,E其实是Ability[2]
+            AbilityTurnOn(myChampion, 1, (Button)sender);
+        }
+
+        void AbilityTurnOn(Champion champion,int i,Button sender)
+        {
+            if (champion.Abilities[i].TurnOn)
+            {
+                champion.Abilities[i].TurnOn = false;
+                ((Button)sender).Text = "Off";
+                ((Button)sender).FlatStyle = FlatStyle.Flat;
+
+                return;
+            }
+
+            else if (!champion.Abilities[1].TurnOn)
+            {
+                myChampion.Abilities[i].TurnOn = true;
+                ((Button)sender).Text = "On";
+                ((Button)sender).FlatStyle = FlatStyle.Standard;
+                return;
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)  //该按钮的功能"点了该按钮后可以重点Sim Start
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)     //该按钮的功能为"重置输入的数据"      //需要重置的数据为等级,加点,(符文),装备,技能开关设定,有很多是可以独立更改的,再测测
+        {
+            myChampion.Change(myDefaultLevel);                      //查BUG,重新模拟时帧数变快,且装备特效狂调用,应该是Change方法里某个参数没有重置
+            richTextBox1.Clear();
+            enemyChampion.Change(enemyDefaultLevel);
+            richTextBox2.Clear();
         }
     }
 }

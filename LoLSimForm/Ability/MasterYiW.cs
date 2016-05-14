@@ -18,5 +18,11 @@ namespace LoLSimForm
         {
 
         }
+
+        protected override string effectString()
+        {            
+            return "Use MasterYiW";
+        }
+
     }
 }

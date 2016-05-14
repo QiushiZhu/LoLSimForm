@@ -8,3 +8,4 @@ c:\users\administrator\documents\visual studio 2015\Projects\LoLSimForm\LoLSimFo
 c:\users\administrator\documents\visual studio 2015\Projects\LoLSimForm\LoLSimForm\obj\Debug\LoLSimForm.exe
 c:\users\administrator\documents\visual studio 2015\Projects\LoLSimForm\LoLSimForm\obj\Debug\LoLSimForm.pdb
 c:\users\administrator\documents\visual studio 2015\Projects\LoLSimForm\LoLSimForm\obj\Debug\LoLSimForm.Form2.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\LoLSimForm\LoLSimForm\obj\Debug\LoLSimForm.ConclusionForm.resources

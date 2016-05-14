@@ -12,6 +12,11 @@ namespace LoLSimForm
         public Champion caster;
         public Champion target;
 
+        public enum Type { Passive, Active }
+        public Type type;
+
+        public bool TurnOn = true;
+
         //protected RichTextBox textBox;      //判断显示文本的控件为哪个TextBox
 
         public double CD;
@@ -27,10 +32,11 @@ namespace LoLSimForm
             caster.FightLog.AppendText(Environment.NewLine);
         }
         
-        public void CDR(Champion _target)       //调用时间为开始模拟后的再次技能初始化
+        public void CDR(Champion _target)       //phase 3.开始模拟时每个技能的初始化
         {
             target = _target;
             CD = CD * (1 - caster.cCDR);
+            passiveEffect();
         }
 
         public  Ability(Champion _caster)      //调用时间为修改英雄参数后的初步技能初始化
@@ -40,11 +46,15 @@ namespace LoLSimForm
             init();
         }
 
-        protected virtual string effectString()     //实际技能效果的方法
+        protected virtual string effectString()     //phase 4
         {
             return "Ability Unoverrided Error";
         }
 
+        protected virtual void passiveEffect()
+        {
+
+        }
 
     }
 }

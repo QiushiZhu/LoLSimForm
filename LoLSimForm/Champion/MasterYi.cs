@@ -31,22 +31,22 @@ namespace LoLSimForm
             this.nManaReg = 0.45;
             this.nMagigResist = 1.25;
 
+            Name = "MasterYi";
 
             statsInit();
 
-            defaultAbility = "QWEQQRQEQEREEWWRWW";
+            defaultAbility = "QEQWQRQEQEREEWWRWW";
 
         }
-
-        int aaCount = -1;
-        double P_Ability_Modifier = 0.5;
+        
 
         public override void AbilityInit()          //Phase 2
         {
             Abilities.Clear();
             aa = new AutoAttack(this);
             Abilities.Add(aa);
-
+            //MasterYiP p = new MasterYiP(this);
+            //p.init();
             if (Q_Level > 0)
                 Abilities.Add(new MasterYiQ(this));
             if (W_Level > 0)
@@ -58,31 +58,7 @@ namespace LoLSimForm
         }
 
 
-        private void OnP_Ability(object sender, EventArgs e)
-        {
-            if (aaCount < 3)
-            {
-                aaCount++;
-            }
-            if (aaCount == 3)
-            {
-                double damage = P_Ability_Modifier * this.cAttackNumber * 100 / (100 + Enemy.cArmor);
-
-                Enemy.cHealth -= damage;
-
-                form1.richTextBox1.AppendText(damage.ToString("F0") + " damage from Passive");
-                form1.richTextBox1.AppendText(Environment.NewLine);
-                if (this.championItems != null && this.championItems.Count > 0)
-                {
-                    for (int i = 0; i < this.championItems.Count; i++)
-                    {
-                        form1.richTextBox1.AppendText(championItems[i].iAutoAttackPassive(Enemy));
-                        form1.richTextBox1.AppendText(Environment.NewLine);
-                    }
-                }
-                aaCount = 0;
-            }
-        }
+       
 
     }
 
